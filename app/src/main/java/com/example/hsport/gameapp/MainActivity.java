@@ -7,6 +7,7 @@ import android.view.ViewGroup;
 public class MainActivity extends AppCompatActivity {
 
     private ViewGroup mContentView;
+    
 
 
     @Override

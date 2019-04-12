@@ -30,7 +30,9 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void setToFullScreen() {
-        mContentView.setSystemUiVisibility(View.SYSTEM_UI_FLAG_LOW_PROFILE
+        ViewGroup rootLayout = (ViewGroup) findViewById(R.id.activity_main);
+
+        rootLayout.setSystemUiVisibility(View.SYSTEM_UI_FLAG_LOW_PROFILE
                 | View.SYSTEM_UI_FLAG_FULLSCREEN
                 | View.SYSTEM_UI_FLAG_LAYOUT_STABLE
                 | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY

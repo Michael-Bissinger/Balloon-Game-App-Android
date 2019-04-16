@@ -2,6 +2,7 @@ package com.example.hsport.gameapp;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 
@@ -25,6 +26,26 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 setToFullScreen();
             }
+        });
+
+        mContentView.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View view, MotionEvent motionEvent) {
+                if (motionEvent.getAction() == MotionEvent.ACTION_UP) {
+
+                    // create a Balloon
+                    Balloon b = new Balloon(MainActivity.this, 0xFFFF0000,
+                            100);
+                    b.setX(motionEvent.getX());
+                    b.setY(motionEvent.getY());
+                    mContentView.addView(b);
+
+
+                }
+
+                return false;
+            }
+
         });
 
     }

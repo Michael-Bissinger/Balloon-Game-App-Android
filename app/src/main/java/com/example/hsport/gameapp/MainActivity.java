@@ -1,5 +1,6 @@
 package com.example.hsport.gameapp;
 
+import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.MotionEvent;
@@ -10,12 +11,17 @@ public class MainActivity extends AppCompatActivity {
 
     private ViewGroup mContentView;
 
-
+    private int[] mBaloonColors = new int[3];
+    private int mNextColor;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        mBaloonColors[0] = Color.argb(255,255, 0 , 0)
+        mBaloonColors[1] = Color.argb(255,0, 255 , 0)
+        mBaloonColors[2] = Color.argb(255,0, 0 , 255)
 
         getWindow().setBackgroundDrawableResource(R.drawable.modern_background);
 
@@ -34,12 +40,13 @@ public class MainActivity extends AppCompatActivity {
                 if (motionEvent.getAction() == MotionEvent.ACTION_UP) {
 
                     // create a Balloon
-                    Balloon b = new Balloon(MainActivity.this, 0xFFFF0000,
+                    Balloon b = new Balloon(MainActivity.this, mBaloonColors[mNextColor],
                             100);
                     b.setX(motionEvent.getX());
                     b.setY(motionEvent.getY());
                     mContentView.addView(b);
 
+                    if 
 
                 }
 

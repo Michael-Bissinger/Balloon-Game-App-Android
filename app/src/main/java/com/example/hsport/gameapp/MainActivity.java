@@ -19,9 +19,9 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        mBaloonColors[0] = Color.argb(255,255, 0 , 0)
-        mBaloonColors[1] = Color.argb(255,0, 255 , 0)
-        mBaloonColors[2] = Color.argb(255,0, 0 , 255)
+        mBaloonColors[0] = Color.argb(255,255, 0 , 0);
+        mBaloonColors[1] = Color.argb(255,0, 255 , 0);
+        mBaloonColors[2] = Color.argb(255,0, 0 , 255);
 
         getWindow().setBackgroundDrawableResource(R.drawable.modern_background);
 
@@ -46,7 +46,11 @@ public class MainActivity extends AppCompatActivity {
                     b.setY(motionEvent.getY());
                     mContentView.addView(b);
 
-                    if 
+                    if (mNextColor + 1 == mBaloonColors.length) {
+                        mNextColor = 0;
+                    } else {
+                        mNextColor++;
+                    }
 
                 }
 

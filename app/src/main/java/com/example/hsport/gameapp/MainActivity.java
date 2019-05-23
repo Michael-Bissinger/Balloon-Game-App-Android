@@ -6,13 +6,14 @@ import android.os.Bundle;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.ViewTreeObserver;
 
 public class MainActivity extends AppCompatActivity {
 
     private ViewGroup mContentView;
 
     private int[] mBaloonColors = new int[3];
-    private int mNextColor;
+    private int mNextColor, mScreenWidth, mScreenHeight;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,6 +27,19 @@ public class MainActivity extends AppCompatActivity {
         getWindow().setBackgroundDrawableResource(R.drawable.modern_background);
 
         mContentView = (ViewGroup) findViewById(R.id.activity_main);
+        setToFullScreen();
+
+        ViewTreeObserver viewTreeObserver = mContentView.getViewTreeObserver();
+        if (viewTreeObserver.isAlive()) {
+            viewTreeObserver.addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
+                @Override
+                public void onGlobalLayout() {
+                    mContentView.getViewTreeObserver().removeOnGlobalLayoutListener(this);
+                    mScreenHeight = mContentView.getHeight();
+                    mScreenWidth = mContentView.getWidth();
+                }
+            });
+        }
 
         mContentView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -43,8 +57,9 @@ public class MainActivity extends AppCompatActivity {
                     Balloon b = new Balloon(MainActivity.this, mBaloonColors[mNextColor],
                             100);
                     b.setX(motionEvent.getX());
-                    b.setY(motionEvent.getY());
+                    b.setY(mScreenHeight);
                     mContentView.addView(b);
+                    b.releaseBalloon(mScreenHeight, 3000);
 
                     if (mNextColor + 1 == mBaloonColors.length) {
                         mNextColor = 0;

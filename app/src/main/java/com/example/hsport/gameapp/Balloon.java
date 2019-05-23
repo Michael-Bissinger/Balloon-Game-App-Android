@@ -68,7 +68,7 @@ public class Balloon extends ImageView implements Animator.AnimatorListener, Val
     }
 
     @Override
-    public void onAnimationUpdate(ValueAnimator animation) {
-
+    public void onAnimationUpdate(ValueAnimator valueAnimator) {
+        setY((float) valueAnimator.getAnimatedValue());
     }
 }

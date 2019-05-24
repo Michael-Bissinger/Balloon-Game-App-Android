@@ -57,31 +57,31 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        mContentView.setOnTouchListener(new View.OnTouchListener() {
-            @Override
-            public boolean onTouch(View view, MotionEvent motionEvent) {
-                if (motionEvent.getAction() == MotionEvent.ACTION_UP) {
-
-                    // create a Balloon
-                    Balloon b = new Balloon(MainActivity.this, mBalloonColors[mNextColor],
-                            100);
-                    b.setX(motionEvent.getX());
-                    b.setY(mScreenHeight);
-                    mContentView.addView(b);
-                    b.releaseBalloon(mScreenHeight, 3000);
-
-                    if (mNextColor + 1 == mBalloonColors.length) {
-                        mNextColor = 0;
-                    } else {
-                        mNextColor++;
-                    }
-
-                }
-
-                return false;
-            }
-
-        });
+//        mContentView.setOnTouchListener(new View.OnTouchListener() {
+//            @Override
+//            public boolean onTouch(View view, MotionEvent motionEvent) {
+//                if (motionEvent.getAction() == MotionEvent.ACTION_UP) {
+//
+//                    // create a Balloon
+//                    Balloon b = new Balloon(MainActivity.this, mBalloonColors[mNextColor],
+//                            100);
+//                    b.setX(motionEvent.getX());
+//                    b.setY(mScreenHeight);
+//                    mContentView.addView(b);
+//                    b.releaseBalloon(mScreenHeight, 3000);
+//
+//                    if (mNextColor + 1 == mBalloonColors.length) {
+//                        mNextColor = 0;
+//                    } else {
+//                        mNextColor++;
+//                    }
+//
+//                }
+//
+//                return false;
+//            }
+//
+//        });
 
     }
 

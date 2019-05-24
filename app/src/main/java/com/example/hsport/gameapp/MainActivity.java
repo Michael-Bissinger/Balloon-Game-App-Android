@@ -109,6 +109,10 @@ public class MainActivity extends AppCompatActivity {
         launcher.execute(mLevel);
     }
 
+    public void goButtonClickHandler(View view) {
+        startLevel();
+    }
+
     private class BalloonLauncher extends AsyncTask<Integer, Integer, Void> {
 
         @Override

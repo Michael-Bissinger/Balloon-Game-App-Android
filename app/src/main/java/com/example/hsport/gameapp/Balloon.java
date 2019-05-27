@@ -13,6 +13,7 @@ public class Balloon extends ImageView implements Animator.AnimatorListener, Val
 
 
     private ValueAnimator mAnimator;
+    private BalloonListener mListener;
 
     public Balloon(Context context) {
         super(context);
@@ -70,5 +71,10 @@ public class Balloon extends ImageView implements Animator.AnimatorListener, Val
     @Override
     public void onAnimationUpdate(ValueAnimator valueAnimator) {
         setY((float) valueAnimator.getAnimatedValue());
+    }
+
+    public interface BalloonListener {
+        void popBallon(Balloon balloon, boolean userTouch);
+
     }
 }

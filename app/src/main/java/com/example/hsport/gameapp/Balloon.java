@@ -59,7 +59,9 @@ public class Balloon extends ImageView implements Animator.AnimatorListener, Val
 
     @Override
     public void onAnimationEnd(Animator animation) {
-        
+        if (!mPopped) {
+            mListener.popBallon(this, false);
+        }
     }
 
     @Override

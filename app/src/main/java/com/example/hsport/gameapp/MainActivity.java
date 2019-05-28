@@ -16,16 +16,20 @@ import java.util.Random;
 public class MainActivity extends AppCompatActivity
     implements Balloon.BalloonListener{
 
+
+    private static final int MIN_ANIMATION_DELAY = 500;
+    private static final int MAX_ANIMATION_DELAY = 1500;
+    private static final int MIN_ANIMATION_DURATION = 1000;
+    private static final int MAX_ANIMATION_DURATION = 8000;
+    private static final int NUMBER_OF_PINS = 5;
+
     private ViewGroup mContentView;
 
     private int[] mBalloonColors = new int[3];
     private int mNextColor, mScreenWidth, mScreenHeight;
-    public static final int MIN_ANIMATION_DELAY = 500;
-    public static final int MAX_ANIMATION_DELAY = 1500;
-    public static final int MIN_ANIMATION_DURATION = 1000;
-    public static final int MAX_ANIMATION_DURATION = 8000;
-    private int mLevel;
-    private  int mScore;
+    private int mLevel, mScore, mPinsUsed;
+
+
     TextView mScoreDisplay, mLevelDisplay;
 
     @Override

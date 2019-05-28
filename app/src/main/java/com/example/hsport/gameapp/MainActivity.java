@@ -8,9 +8,13 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewTreeObserver;
+import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import java.util.Random;
 
 public class MainActivity extends AppCompatActivity
@@ -28,6 +32,7 @@ public class MainActivity extends AppCompatActivity
     private int[] mBalloonColors = new int[3];
     private int mNextColor, mScreenWidth, mScreenHeight;
     private int mLevel, mScore, mPinsUsed;
+    private List<ImageView> mPinImages = new ArrayList<>();
 
 
     TextView mScoreDisplay, mLevelDisplay;
@@ -67,6 +72,11 @@ public class MainActivity extends AppCompatActivity
 
         mScoreDisplay = (TextView) findViewById(R.id.score_display);
         mLevelDisplay = (TextView) findViewById(R.id.level_display);
+        mPinImages.add((ImageView) findViewById(R.id.pushpin1));
+        mPinImages.add((ImageView) findViewById(R.id.pushpin2));
+        mPinImages.add((ImageView) findViewById(R.id.pushpin3));
+        mPinImages.add((ImageView) findViewById(R.id.pushpin4));
+        mPinImages.add((ImageView) findViewById(R.id.pushpin5));
 
         updateDisplay();
 
@@ -134,8 +144,24 @@ public class MainActivity extends AppCompatActivity
         mContentView.removeView(balloon);
         if (userTouch) {
             mScore++;
+        } else {
+            mPinsUsed++;
+            if (mPinsUsed <= mPinImages.size()) {
+                mPinImages.get(mPinsUsed - 1)
+                        .setImageResource(R.drawable.pin_off);
+            } if (mPinsUsed == NUMBER_OF_PINS) {
+                gameOver(true);
+                return;
+            } else {
+                Toast.makeText(this,"You are a schmudz!", Toast.LENGTH_SHORT).show();
+
+            }
         }
         updateDisplay();
+    }
+
+    private void gameOver(boolean b) {
+
     }
 
     private void updateDisplay() {

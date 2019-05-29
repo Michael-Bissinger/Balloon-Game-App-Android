@@ -33,7 +33,7 @@ public class MainActivity extends AppCompatActivity
     private int mNextColor, mScreenWidth, mScreenHeight;
     private int mLevel, mScore, mPinsUsed;
     private List<ImageView> mPinImages = new ArrayList<>();
-
+    private List<Balloon> mBalloons = new ArrayList<>();
 
     TextView mScoreDisplay, mLevelDisplay;
 
@@ -142,6 +142,7 @@ public class MainActivity extends AppCompatActivity
     @Override
     public void popBallon(Balloon balloon, boolean userTouch) {
         mContentView.removeView(balloon);
+        mBalloons.remove(balloon);
         if (userTouch) {
             mScore++;
         } else {
@@ -161,7 +162,15 @@ public class MainActivity extends AppCompatActivity
     }
 
     private void gameOver(boolean b) {
+        Toast.makeText(this, "Game over!", Toast.LENGTH_SHORT).show();
 
+        for (Balloon balloon :
+        mBalloons) {
+            mContentView.removeView(balloon);
+            balloon.setPopped(true);
+
+        }
+        mBalloons.clear();
     }
 
     private void updateDisplay() {
@@ -222,6 +231,7 @@ public class MainActivity extends AppCompatActivity
     private void launchBalloon(int x) {
 
         Balloon balloon = new Balloon(this, mBalloonColors[mNextColor], 150);
+        mBalloons.add(balloon);
 
         if (mNextColor + 1 == mBalloonColors.length) {
             mNextColor = 0;

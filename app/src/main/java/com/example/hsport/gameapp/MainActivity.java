@@ -37,6 +37,8 @@ public class MainActivity extends AppCompatActivity
     private List<ImageView> mPinImages = new ArrayList<>();
     private List<Balloon> mBalloons = new ArrayList<>();
     private Button mGoButton;
+    private boolean mPlaying;
+    private  boolean mGameStopped = true;
 
 
 

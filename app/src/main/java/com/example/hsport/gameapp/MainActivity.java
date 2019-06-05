@@ -138,7 +138,14 @@ public class MainActivity extends AppCompatActivity
 
         BalloonLauncher launcher = new BalloonLauncher();
         launcher.execute(mLevel);
+        mPlaying = true;
 
+    }
+
+    private void finishLevel() {
+        Toast.makeText(this, String.format("You finished level %d"), mLevel, Toast.LENGTH_SHORT).show();
+        mPlaying = false;
+        mGoButton.setText(String.format("Start lebel %d", mLevel + 1);
     }
 
     public void goButtonClickHandler(View view) {
@@ -204,7 +211,7 @@ public class MainActivity extends AppCompatActivity
             int minDelay = maxDelay / 2;
 
             int balloonsLaunched = 0;
-            while (balloonsLaunched < 3) {
+            while (mPlaying && balloonsLaunched < 3) {
 
 //              Get a random horizontal position for the next balloon
                 Random random = new Random(new Date().getTime());

@@ -8,6 +8,7 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewTreeObserver;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -32,10 +33,12 @@ public class MainActivity extends AppCompatActivity
     private int[] mBalloonColors = new int[3];
     private int mNextColor, mScreenWidth, mScreenHeight;
     private int mLevel, mScore, mPinsUsed;
+    TextView mScoreDisplay, mLevelDisplay;
     private List<ImageView> mPinImages = new ArrayList<>();
     private List<Balloon> mBalloons = new ArrayList<>();
+    private Button mGoButton;
 
-    TextView mScoreDisplay, mLevelDisplay;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -77,6 +80,7 @@ public class MainActivity extends AppCompatActivity
         mPinImages.add((ImageView) findViewById(R.id.pushpin3));
         mPinImages.add((ImageView) findViewById(R.id.pushpin4));
         mPinImages.add((ImageView) findViewById(R.id.pushpin5));
+        mGoButton = (Button) findViewById(R.id.go_button);
 
         updateDisplay();
 

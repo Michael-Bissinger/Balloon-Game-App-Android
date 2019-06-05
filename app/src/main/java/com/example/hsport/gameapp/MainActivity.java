@@ -133,6 +133,19 @@ public class MainActivity extends AppCompatActivity
         setToFullScreen();
     }
 
+    private void startGame() {
+        setToFullScreen(); // Just making sure, that full screen is active
+        mScore = 0;
+        mLevel = 0;
+        mPinsUsed = 0;
+        for (ImageView pin :
+                mPinImages) {
+            pin.setImageResource(R.drawable.pin);
+        }
+        mGameStopped = false;
+        startLevel();
+    }
+
     private void startLevel() {
         mLevel++;
         updateDisplay();
@@ -140,6 +153,7 @@ public class MainActivity extends AppCompatActivity
         BalloonLauncher launcher = new BalloonLauncher();
         launcher.execute(mLevel);
         mPlaying = true;
+        mBalloonsPopped = 0;
 
     }
 
@@ -150,7 +164,13 @@ public class MainActivity extends AppCompatActivity
     }
 
     public void goButtonClickHandler(View view) {
-        startLevel();
+        if (mPlaying) {
+            gameOver(false);
+        } else if (mGameStopped) {
+            startGame();
+        } else {
+            startLevel();
+        }
     }
 
     @Override
@@ -193,6 +213,7 @@ public class MainActivity extends AppCompatActivity
         }
         mBalloons.clear();
         mPlaying = false;
+        mGameStopped = true;
         mGoButton.setText("Start game");
     }
 

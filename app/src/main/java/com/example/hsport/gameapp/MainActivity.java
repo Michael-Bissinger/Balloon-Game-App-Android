@@ -154,6 +154,7 @@ public class MainActivity extends AppCompatActivity
         launcher.execute(mLevel);
         mPlaying = true;
         mBalloonsPopped = 0;
+        mGoButton.setText("Stop game");
 
     }
 

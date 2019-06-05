@@ -158,9 +158,9 @@ public class MainActivity extends AppCompatActivity
     }
 
     private void finishLevel() {
-        Toast.makeText(this, String.format("You finished level %d"), mLevel), Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, String.format("You finished level %d", mLevel), Toast.LENGTH_SHORT).show();
         mPlaying = false;
-        mGoButton.setText(String.format("Start lebel %d", mLevel + 1);
+        mGoButton.setText(String.format("Start level %d", mLevel + 1));
     }
 
     public void goButtonClickHandler(View view) {

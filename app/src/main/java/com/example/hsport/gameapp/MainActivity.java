@@ -27,6 +27,7 @@ public class MainActivity extends AppCompatActivity
     private static final int MIN_ANIMATION_DURATION = 1000;
     private static final int MAX_ANIMATION_DURATION = 8000;
     private static final int NUMBER_OF_PINS = 5;
+    private static final int BALLOONS_PER_LEVEL = 3;
 
     private ViewGroup mContentView;
 
@@ -39,7 +40,7 @@ public class MainActivity extends AppCompatActivity
     private Button mGoButton;
     private boolean mPlaying;
     private  boolean mGameStopped = true;
-
+    private int mBalloonsPopped;
 
 
     @Override
@@ -143,7 +144,7 @@ public class MainActivity extends AppCompatActivity
     }
 
     private void finishLevel() {
-        Toast.makeText(this, String.format("You finished level %d"), mLevel, Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, String.format("You finished level %d"), mLevel), Toast.LENGTH_SHORT).show();
         mPlaying = false;
         mGoButton.setText(String.format("Start lebel %d", mLevel + 1);
     }
@@ -154,6 +155,9 @@ public class MainActivity extends AppCompatActivity
 
     @Override
     public void popBallon(Balloon balloon, boolean userTouch) {
+
+        mBalloonsPopped++;
+        
         mContentView.removeView(balloon);
         mBalloons.remove(balloon);
         if (userTouch) {
@@ -172,6 +176,10 @@ public class MainActivity extends AppCompatActivity
             }
         }
         updateDisplay();
+
+        if (mBalloonsPopped == BALLOONS_PER_LEVEL) {
+            finishLevel();
+        }
     }
 
     private void gameOver(boolean b) {
@@ -184,6 +192,8 @@ public class MainActivity extends AppCompatActivity
 
         }
         mBalloons.clear();
+        mPlaying = false;
+        mGoButton.setText("Start game");
     }
 
     private void updateDisplay() {
@@ -211,7 +221,7 @@ public class MainActivity extends AppCompatActivity
             int minDelay = maxDelay / 2;
 
             int balloonsLaunched = 0;
-            while (mPlaying && balloonsLaunched < 3) {
+            while (mPlaying && balloonsLaunched < BALLOONS_PER_LEVEL) {
 
 //              Get a random horizontal position for the next balloon
                 Random random = new Random(new Date().getTime());

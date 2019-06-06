@@ -14,6 +14,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.hsport.gameapp.utils.HighScoreHelper;
+import com.example.hsport.gameapp.utils.SimpleAlertDialog;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -222,7 +223,9 @@ public class MainActivity extends AppCompatActivity
         if (allPinsUsed == true) {
             if (HighScoreHelper.isTopScore(this, mScore)) {
                     HighScoreHelper.setTopScore(this, mScore);
-                    
+                    SimpleAlertDialog dialog = SimpleAlertDialog.newInstance("New High Score!",
+                            String.format("Your new highscore is %d", mScore));
+                    dialog.show(getSupportFragmentManager(), null);
             }
 
         }

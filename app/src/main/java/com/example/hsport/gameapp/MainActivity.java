@@ -13,6 +13,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.hsport.gameapp.utils.HighScoreHelper;
+
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -203,7 +205,7 @@ public class MainActivity extends AppCompatActivity
         }
     }
 
-    private void gameOver(boolean b) {
+    private void gameOver(boolean allPinsUsed) {
         Toast.makeText(this, "Game over!", Toast.LENGTH_SHORT).show();
 
         for (Balloon balloon :
@@ -216,6 +218,14 @@ public class MainActivity extends AppCompatActivity
         mPlaying = false;
         mGameStopped = true;
         mGoButton.setText("Start game");
+
+        if (allPinsUsed == true) {
+            if (HighScoreHelper.isTopScore(this, mScore)) {
+                    HighScoreHelper.setTopScore(this, mScore);
+                    
+            }
+
+        }
     }
 
     private void updateDisplay() {
